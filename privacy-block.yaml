@@ -1,0 +1,189 @@
+payload:
+  # ===== 设备指纹 / 风控评分服务 =====
+  - '+.siftscience.com'          # Sift 反欺诈设备指纹
+  - '+.online-metrix.net'        # ThreatMetrix(LexisNexis) 设备指纹
+
+  # ===== 用户行为分析 / 埋点 SDK =====
+  - '+.mixpanel.com'             # Mixpanel 行为分析(原config.yaml中已有，合并于此)
+  - '+.segment.io'                # Segment 行为数据聚合转发
+  - '+.appsflyersdk.com'         # AppsFlyer 归因追踪(拿设备IDFA/GAID)
+
+  # ===== 跨App广告联盟 SDK =====
+  - '+.pangolin-sdk-toutiao.com'   # 字节跳动 穿山甲广告联盟SDK
+  - '+.pangolin-sdk-toutiao1.com'
+  - '+.doubleclick.net'            # Google 广告追踪
+  - '+.googlesyndication.com'      # Google 广告联盟
+  - '+.googleadservices.com'       # Google 广告服务
+  - '+.gdtimg.com'                 # 腾讯广点通广告
+  - 'xs.gdt.qq.com'                # 腾讯广点通广告
+  - '+.gdtimg.cn' 
+  - 'xs.gdt.qq.cn'     
+  # ===== OPPO/欢太 广告与追踪类域名(精确匹配，不再全域名拦截，避免应用商店/推送/更新等功能无法联网) =====
+  - '+.ads.heytapmobi.com'                   # 广告SDK(覆盖 sms.ads./cl-data.ads./stg-data.ads./adx.ads.)
+  - 'push-ads-cn.heytapmobi.com'             # 广告推送
+  - 'virusinfo-cloudscan-cn.heytapmobi.com'  # 云端扫描(上报已安装应用等设备信息)
+  - 'virusinfo-sec.heytapmobi.com'           # 同上，安全扫描相关数据回传
+  - 'ums-telemetry-cn.heytapmobi.com'        # 域名明确写"telemetry(遥测)"，用户行为数据回传
+  - 'mdp-usertrace-cn.heytapmobi.com'        # 域名明确写"usertrace(用户追踪)"
+  - 'mdp-usertrace-cn.heytapdownload.com'    # 同上(备用域名)
+  - 'datasec-kmsex-cn.heytapmobi.com'        # 数据安全/密钥相关，随大量遥测域名同批出现，一并观察
+  - 'comsec-intelligence-cn.heytapmobi.com'  # "通信安全情报"类回传，疑似行为情报采集
+
+  # ===== 疑似PCDN共享节点(原config.yaml中已有精确规则，比全域名封锁更安全，合并于此) =====
+  - 'apd-pcdnwxstat.teg.tencent-cloud.net'
+  - 'apd-pcdnwxlogin.teg.tencent-cloud.net'
+  # =====反诈 =====
+  - '+.gjfzpt.com'
+  - '+.gjfzpt.cn'
+  - '+.avlyun.com'
+  - '+.heytapmobi.com'
+  - '+.heytapdownload.com'
+  - 'amdcopen.m.umeng.com'
+  - 'umengacs.m.taobao.com'
+  - '+.umeng.com'
+  - 'nebula-api-cn.heytapmobi.com'
+  - '+.roewe.com.cn'
+  - '+.360.cn'
+  - '+.jd.com'
+  - '+.360buyimg.com'
+  # ===== 随机哈希/高度可疑的不明域名(日志中出现多个随机子域名，疑似追踪或异常程序) =====
+  # 注：bdcgslb.com(百度GSLB负载均衡)已从名单中移除 —— 该域名同时承载百度推送SDK、
+  # 地图等正常功能的节点调度，并非专用追踪域名，全域名拦截可能误伤其他App的正常联网功能，
+  # 建议先观察日志，如确认具体某个随机子域名反复出现且无实际功能对应，再单独拉黑那一条。
+  - '+.manlaxycloud.com'         # 随机哈希子域名，来源不明，疑似广告SDK/数据收集
+  - '+.finzfin.com'              # 多个子域名(epoch./configx./fast-wallet./i-monetization.)，来源不明
+  - '3d120fae-9.sjxydc.com'      # 随机字符前缀+不明域名，来源可疑
+  - '+.sjxydc.com'              # 整段封禁：覆盖所有随机子域名，包括上面那条 3d120fae-9
+  - 'v6-api-p1.yksdks.com'       # 域名无实际含义，疑似不明SDK通信
+  - 'v6-api-d.dutils.com'
+  - 'v6-api-c.dutils.com'
+  - 'contendvc.cnouyi.pizza'     # 异常TLD(.pizza)，域名构造反常，高度可疑
+  - 'aym09q.z.cjjd14.com'        # 随机字符子域名，来源不明
+  - 'a.cytxl.com.cn'             # 来源不明
+  - '2027855638.qrstuvwxyzab.com'  # 纯数字子域名+构造异常域名，高度可疑
+  - '1864410827.qrstuvwxyzab.com'
+
+  - 'tianqin.qq.com'      
+  - 'tianqin.qq.cn' 
+  # ==================== 腾讯 (Tencent) ====================
+  # 广点通 / 核心广告系统
+  - '+.gdt.qq.com'
+  - 'pgdt.gtimg.cn'
+  - 'pgdt.qq.com'
+  - 'ad.qq.com'
+  - 'adsmind.gtimg.com'
+  - 'ad.weixin.qq.com'
+  # 灯塔 SDK / 埋点与行为追踪
+  - '+.beacon.qq.com'
+  - 'pingfore.qq.com'
+  - 'pingtcss.qq.com'
+  - 'pingjs.qq.com'
+  - 'tajs.qq.com'
+  - 'btrace.qq.com'
+  - 'trace.qq.com'
+  # Bugly / 崩溃收集与遥测
+  - 'bugly.qq.com'
+  - 'android.bugly.qq.com'
+  - 'ios.bugly.qq.com'
+  # HTTP-DNS 服务
+  - 'dns.qq.com'
+
+  # ==================== 阿里巴巴 (Alibaba) ====================
+  # 阿里妈妈 / 广告交易平台
+  - '+.alimama.com'
+  - '+.alimama.cn'
+  - '+.tanx.com'
+  - '+.mmstat.com'
+  - '+.stat.alibaba.com'
+  # 友盟 (Umeng) / 埋点与设备指纹
+  - '+.umengcloud.com'
+  - '+.umeng.co'
+  - '+.ut.taobao.com'
+  - '+.agoo-report.m.taobao.com'
+  # UC / 夸克
+  - '+.ads.uc.cn'
+  - '+.applog.uc.cn'
+
+  # ==================== 字节跳动 (ByteDance) ====================
+  # 穿山甲 (Pangolin) 广告联盟 (核心开屏弹窗来源)
+  - '+.pangolin-dsp-toutiao.com'
+  - '+.pangolin-dsp-toutiao-b.com'
+  - '+.pglstatp-toutiao.com'
+  # 官方广告平台
+  - '+.ad.toutiao.com'
+  - '+.ad.douyin.com'
+  - '+.byteadverts.com'
+  # 遥测 / 设备日志 / 埋点 SDK
+  - '+.log.zijieapi.com'
+  - '+.tobapplog.com'
+  - '+.extlog.snssdk.com'
+  - '+.mcs.snssdk.com'
+
+  # ==================== 百度 (Baidu) ====================
+  - '+.mobads.baidu.com'
+  - '+.mobads-logs.baidu.com'
+  - '+.nsclick.baidu.com'
+  - '+.hm.baidu.com'
+  - '+.mtj.baidu.com'
+  - '+.cpro.baidu.com'
+  - '+.pos.baidu.com'
+  - '+.dup.baidustatic.com'
+  - '+.union.baidu.com'
+
+  # ==================== 快手 (Kuaishou / 磁力引擎) ====================
+  - '+.ksadexec.com'
+  - '+.ad.kuaishou.com'
+  - '+.e.kuaishou.com'
+  - '+.report.kuaishou.com'
+  - '+.log.kuaishou.com'
+  - '+.track.kuaishou.com'
+
+  # ==================== 美团 (Meituan) ====================
+  - '+.analytics.meituan.com'
+  - '+.d.meituan.net'
+  - '+.report.meituan.com'
+  - '+.report.meituan.net'
+  - '+.p.meituan.net'
+
+  # ==================== 京东 (JD) ====================
+  - '+.ad.360buy.com'
+  - '+.ad.jd.com'
+  - '+.stat.jd.com'
+  - '+.dsp.jd.com'
+  - '+.policy.jd.com'
+
+  # ==================== 新浪微博 (Weibo) ====================
+  - '+.sdkapp.uve.weibo.com'
+  - '+.sax.weibo.com'
+  - '+.ad.weibo.com'
+  - '+.beacon.weibo.cn'
+
+  # ==================== 拼多多 (Pinduoduo) ====================
+  - '+.ad.pinduoduo.com'
+  - '+.stat.pinduoduo.com'
+  - '+.meta.pinduoduo.com'
+
+  # ===== 2026-11-06 补封：Nov 4-5 日志(36.5h)里 DIRECT 放行的 log/遥测域名 =====
+  # 来源：mihomo_last5days_5_xvpl.log，同族的 log0-misc-hl.amemv.com 已被 sukkaw REJECT，
+  # 下面这些换了前缀/子域名就漏了；sau-server-cn.allawntech.com 和 stat6.y.qq.com
+  # 这次没加，前者是系统应用更新服务，后者是 QQ 音乐统计，先观察。
+  # --- 字节跳动 log/监控 ---
+  - 'mon0-misc-hl.amemv.com'        # 300 条 DIRECT，监控上报；同族 log0 已拦
+  - 'log5-misc-hl.amemv.com'        # 71 条 DIRECT，日志上报
+  - 'logbk.amemv.com'               # 68 条 DIRECT，日志上报
+  - 'rtlog3-applog-lq.amemv.com'    # 5 条 DIRECT，应用日志
+  - 'log-lq.snssdk.com'             # 4 条 DIRECT，日志上报
+  # --- 米哈游 log/上传 ---
+  - 'ys-log-upload.mihoyo.com'      # 20 条 DIRECT，游戏日志上传
+  - 'h5log-api-dualstack.mihoyo.com'  # 19 条 DIRECT，H5 日志
+  - 'apm-log-upload-v6.mihoyo.com'  # 6 条 DIRECT，APM 日志上传
+  - 'sdk-log-upload.mihoyo.com'     # 6 条 DIRECT，SDK 日志上传
+  - 'ad-log-upload.mihoyo.com'      # 5 条 DIRECT，广告日志上传
+  - 'h5collector.mihoyo.com'        # 2 条 DIRECT，H5 收集
+  # --- 快手 / 微信 ---
+  - 'eu-dw-collect.ksord.com'       # 14 条 DIRECT，快手数据收集
+  - 'wetelemetry.weixin.qq.com'     # 1 条 DIRECT，微信遥测
+  # --- OPPO 国内版服务 ---
+  - 'icosa-service-cn-01.allawntech.com'  # 7 条 DIRECT，OPPO 遥测服务国内版
+  - 'opex-service-cn.allawntech.com'      # 8 条 DIRECT，OPPO 服务国内版
+  - 'rus-service-cn.allawntech.com'       # 4 条 DIRECT，OPPO 服务国内版
