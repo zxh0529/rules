@@ -187,3 +187,4 @@ payload:
   - 'icosa-service-cn-01.allawntech.com'  # 7 条 DIRECT，OPPO 遥测服务国内版
   - 'opex-service-cn.allawntech.com'      # 8 条 DIRECT，OPPO 服务国内版
   - 'rus-service-cn.allawntech.com'       # 4 条 DIRECT，OPPO 服务国内版
+  - '+.gihiji.com'
